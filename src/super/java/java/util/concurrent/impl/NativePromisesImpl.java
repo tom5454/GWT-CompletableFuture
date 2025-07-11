@@ -18,7 +18,7 @@ package java.util.concurrent.impl;
 /**
  *
  */
-final class NativePromisesImpl implements Promises {
+public final class NativePromisesImpl implements Promises {
 
   @Override
   public Promise<Void> allOf(Promise[] promises) {

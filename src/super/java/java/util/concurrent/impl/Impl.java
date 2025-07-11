@@ -20,29 +20,7 @@ package java.util.concurrent.impl;
  */
 public class Impl {
 
-  public static final Promises IMPL = isSupported() ? new NativePromisesImpl() :
-      new PromisesImpl();
-
-  /*
-   * Implementation taken from:
-   * https://github.com/jakearchibald/es6-promise/blob/master/lib/promise/polyfill.js
-   */
-  private static native boolean isSupported() /*-{
-    return typeof Promise === "function"
-        // Some of these methods are missing from
-        // Firefox/Chrome experimental implementations
-        && "resolve" in Promise
-        && "reject" in Promise
-        && "all" in Promise
-        && "race" in Promise
-        // Older version of the spec had a resolver object
-        // as the arg rather than a function
-        && (function() {
-          var resolve;
-          new Promise(function(r) { resolve = r; });
-          return typeof resolve === "function";
-        }());
-  }-*/;
+  public static final Promises IMPL = new NativePromisesImpl();
 
   private Impl() { }
 }

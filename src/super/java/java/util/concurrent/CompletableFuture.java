@@ -460,8 +460,6 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
       } else {
         try {
           CompletableFuture<U> newFuture = fn.apply(r).toCompletableFuture();
-          // TODO: async?
-          // TODO: whenCompleteAsync0?
           newFuture.whenCompleteAsync0((r1, ex) -> {
             if (ex != null) {
               future.tryCompleteThrowable(ex);
@@ -473,7 +471,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
           future.tryCompleteThrowable(ex);
         }
       }
-    }, null); // TODO: executor?
+    }, executor);
     return future;
   }
 
